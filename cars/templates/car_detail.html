@@ -88,8 +88,10 @@
       <p><strong>Preço:</strong> R$ {{ object.value }}</p>
   </div>
   <div class="buttons-container">
-    <a href="{% url 'car_update' pk=object.pk %}" class="btn btn-primary">Editar</a>
-    <a href="{% url 'car_delete' pk=object.pk %}" class="btn btn-danger">Deletar</a>
-    <a href="{% url 'cars_list' %}" class="btn btn-secondary">Cancelar</a>
+    {% if user.is_authenticated %}
+      <a href="{% url 'car_update' pk=object.pk %}" class="btn btn-primary">Editar</a>
+      <a href="{% url 'car_delete' pk=object.pk %}" class="btn btn-danger">Deletar</a>
+    {% endif %}
+    <a href="{% url 'cars_list' %}" class="btn btn-secondary">Voltar</a>
   </div>
 {% endblock %}
