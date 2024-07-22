@@ -1,3 +1,4 @@
+from dirtyfields import DirtyFieldsMixin
 from django.db import models
 
 
@@ -9,7 +10,7 @@ class Brand(models.Model):
         return self.name
 
 
-class Car(models.Model):
+class Car(DirtyFieldsMixin, models.Model):
     id = models.AutoField(primary_key=True)
     model = models.CharField(max_length=200)
     brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name='car_brand')
